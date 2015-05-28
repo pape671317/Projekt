@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<math.h>
+struct zespolona
+{
+  float re;
+  float im;
+};
+struct zespolona dodaj(struct zespolona a, struct zespolona b)
+{
+  struct zespolona c;
+  c.re=a.re+b.re;
+  c.im=a.im+b.im;
+  return c;
+}
+float licz_modol(struct zespolona a)
+{
+  float wynik;
+  wynik=sqrt(a.re*a.re+a.im*a.im);
+  return wynik;
+}
+struct zespolona licz_sprz(struct zespolona a)
+{
+  struct zespolona b;
+  b.re=a.re;
+  b.im=-a.im;
+  return b;
+}
+void wypisz_zesp(struct zespolona z) {
+printf("%.2f %+.2fi \n", z.re, z.im);
+}
+main()
+{
+  struct zespolona a={2,5};
+  struct zespolona b={4,-6};
+  struct zespolona suma,sprz;
+  float modol;
+  suma=dodaj(a,b);
+  modol=licz_modol(a);
+  sprz=licz_sprz(a);
+  wypisz_zesp(suma);
+  wypisz_zesp(sprz);
+  printf("%.2f\n", modol);
+}
