@@ -22,7 +22,7 @@ struct zespolona licz_sprz(struct zespolona a)
 {
   struct zespolona b;
   b.re=a.re;
-  b.im=-a.im;
+  b.im=-apo.im;
   return b;
 }
 void wypisz_zesp(struct zespolona z) {
