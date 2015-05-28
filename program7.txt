@@ -1,0 +1,61 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+#define ROZMIAR 100
+
+char *deleteLastChar(char *napis);
+
+main()
+
+{
+
+char *napis;
+
+napis=(char*)malloc(ROZMIAR*sizeof(char));
+
+fgets(napis,ROZMIAR,stdin);
+
+char *wsk;
+
+wsk=deleteLastChar(napis);
+
+puts(wsk);
+
+return 0;
+
+}
+
+char *deleteLastChar(char *napis)
+
+{
+
+int licznik,licznik2;
+
+char *wsk;
+
+for(licznik=0;licznik<ROZMIAR&&*(napis+licznik)!='\0'&&*(napis+licznik)!='\n';++licznik)
+
+{
+
+}
+
+wsk=(char*)malloc((licznik)*sizeof(char));
+
+*(wsk+licznik-1)='\0';
+
+for(licznik2=0;licznik2<(licznik-1);++licznik2)
+
+{
+
+*(wsk+licznik2)=*(napis+licznik2);
+
+}
+
+free(napis);
+
+napis=NULL;
+
+return wsk;
+
+}
