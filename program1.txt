@@ -7,8 +7,6 @@ struct zespolona
 };
 struct zespolona dodaj(struct zespolona a, struct zespolona b)
 {
-  struct zespolona c;
-  c.re=a.re+b.re;
   c.im=a.im+b.im;
   return c;
 }
