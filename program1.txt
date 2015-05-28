@@ -26,15 +26,5 @@ void wypisz_zesp(struct zespolona z) {
 printf("%.2f %+.2fi \n", z.re, z.im);
 }
 main()
-{
-  struct zespolona a={2,5};
-  struct zespolona b={4,-6};
-  struct zespolona suma,sprz;
-  float modol;
-  suma=dodaj(a,b);
-  modol=licz_modol(a);
-  sprz=licz_sprz(a);
-  wypisz_zesp(suma);
-  wypisz_zesp(sprz);
-  printf("%.2f\n", modol);
+{kol
 }
