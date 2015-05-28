@@ -14,7 +14,7 @@ struct zespolona dodaj(struct zespolona a, struct zespolona b)
 }
 float licz_modol(struct zespolona a)
 {
-  float ynk;
+  float ynk
   wynik=sqrt(a.re*a.re+a.im*a.im);
   return wynik;
 
