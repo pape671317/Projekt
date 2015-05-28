@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<stdlib.h>
+void deleteMatrix(int ***ptab, int n)
+{
+int licznik;
+for(licznik=0;licznik<n;licznik++)
+  {
+  free((*ptab)[licznik]);
+  (*ptab)[licznik]=NULL;
+  }
+free(*ptab);
+*ptab=NULL;
+}
+
+int **createMatrix(int n)
+{
+int **ptab;
+int licznik;
+ptab=malloc(n*sizeof(ptab));
+if(ptab==NULL)
+return NULL;
+for(licznik=0;licznik<n;licznik++)
+  {
+  ptab[licznik]=malloc(n*sizeof(int));
+  if(ptab[licznik]==NULL)
+    {
+    deleteMatrix(&ptab,licznik);
+    return NULL;
+    }
+   }
+return ptab;
+}
+
+void fillMatrix(int **ptab, int n)
+{
+int licznik1,licznik2, liczba=1;
+for(licznik1=0;licznik1<n;licznik1++)
+  {
+  for(licznik2=0;licznik2<n;licznik2++)
+    {
+    ptab[licznik1][licznik2]=liczba;
+    liczba++;
+    }
+  }
+}
+
+void copyMatrix(int ***dest, int **src, int n)
+{
+int licznik1,licznik2;
+*dest=createMatrix(n);
+if((*dest)!=NULL)
+{
+  for(licznik1=0;licznik1<n;licznik1++)
+    {
+    for(licznik2=0;licznik2<n;licznik2++)
+      {
+      (*dest)[licznik1][licznik2]=src[licznik1][licznik2];
+      }
+    }
+  }
+}
+
+main()
+{
+int **ptab;
+int **dest;
+int licznik1,licznik2;
+int n;
+printf("Podaj n\n");
+scanf("%d", &n);
+ptab=createMatrix(n);
+if(ptab==NULL)
+  {
+  fprintf(stderr,"error");
+  return 0;
+  }
+fillMatrix(ptab,n);
+copyMatrix(&dest, ptab,n);
+if(dest==NULL)
+  {
+  fprintf(stderr,"error");
+  return 0;
+  }
+for(licznik1=0;licznik1<n;licznik1++)
+{
+  for(licznik2=0;licznik2<n;licznik2++)
+    {
+    printf("%4d",dest[licznik1][licznik2]);
+    }
+  putchar('\n');
+}
+deleteMatrix(&ptab,n);
+deleteMatrix(&dest,n);
+}
