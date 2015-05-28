@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+void add(int **ptab, int n, int new_elem)
+{
+int licznik;
+int *wsk;
+if(wsk==NULL)
+  free(*ptab);
+wsk=malloc((n+1)*sizeof(int));
+for(licznik=0;licznik<n;licznik++)
+  {
+  *(wsk+licznik)=*(*ptab+licznik);
+  }
+*(wsk+n)=new_elem;
+*ptab=wsk;
+}
+main()
+{
+int licznik, new_elem;
+int *wsk=NULL;
+for(licznik=0;licznik<10;licznik++)
+  {
+  printf("Podaj nowy element\n");
+  scanf("%d", &new_elem);
+  add(&wsk,licznik,new_elem);
+  if(wsk==NULL)
+  {
+    printf("Brak pamiêci");
+    return 0;
+  }
+  }
+for(licznik=0;licznik<10;licznik++)
+  {
+  printf("%d\n", *(wsk+licznik));
+  }
+free(wsk);
+wsk=NULL;
+}
