@@ -10,7 +10,7 @@ struct wezel *lewy;
 
 struct wezel *prawy;
 
-struct wezel *gora;
+struct weze *gora;
 
 };
 
@@ -171,7 +171,7 @@ printf("Ile liczb?\n");
 
 scanf("%d",&ilosc);
 
-printf("Podaj liczbê\n");
+printf("Podaj liczbÃª\n");
 
 scanf("%d",&liczba);
 
