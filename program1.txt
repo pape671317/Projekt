@@ -17,8 +17,7 @@ float licz_modol(struct zespolona a)
 }
 struct zespolona licz_sprz(struct zespolona a)
 {
-  struct zespolona b;
-  b.re=a.re;
+  struct zespolona kop
   b.im=-a.im;
   return b;
 }
