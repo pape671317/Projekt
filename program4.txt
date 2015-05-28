@@ -1,0 +1,416 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+#define ROZMIAR 20
+
+
+struct osoba{
+
+char imie[ROZMIAR];
+
+char nazwisko[ROZMIAR];
+
+int rok;
+
+struct osoba *next;
+
+};
+
+
+void dodaj_pierwszy(struct osoba **head)
+
+{
+
+struct osoba *nowy=(struct osoba*)malloc(sizeof(struct osoba));
+
+if(nowy==NULL)
+
+  {
+
+  printf("Brak pamieci");
+
+  return;
+
+  }
+
+printf("Podaj imie\n");
+
+scanf("%s", &(nowy->imie));
+
+getchar();
+
+printf("Podaj nazwisko\n");
+
+scanf("%s", &(nowy->nazwisko));
+
+getchar();
+
+printf("Podaj rok\n");
+
+scanf("%d", &(nowy->rok));
+
+getchar();
+
+nowy->next=*head;
+
+*head=nowy;
+
+return;
+
+}
+
+
+void dodaj_koniec(struct osoba **head)
+
+{
+
+struct osoba *nowy=(struct osoba*)malloc(sizeof(struct osoba));
+
+struct osoba *ptr, *wsk;
+
+if(nowy==NULL)
+
+  {
+
+  printf("Brak pamieci");
+
+  return;
+
+  }
+
+printf("Podaj imie\n");
+
+scanf("%s", &(nowy->imie));
+
+getchar();
+
+printf("Podaj nazwisko\n");
+
+scanf("%s", &(nowy->nazwisko));
+
+getchar();
+
+printf("Podaj rok\n");
+
+scanf("%d", &(nowy->rok));
+
+getchar();
+
+if((*head)!=NULL)
+
+{
+
+for(ptr=*head;ptr->next!=NULL;ptr=ptr->next)
+
+{
+
+}
+
+ptr->next=nowy;
+
+nowy->next=NULL;
+
+return;
+
+}
+
+else
+
+{
+
+*head=nowy;
+
+nowy->next=NULL;
+
+return;
+
+}
+
+}
+
+
+void wypisz(struct osoba *head)
+
+{
+
+struct osoba *ptr;
+
+if(head==NULL)
+
+{
+
+printf("Lista jest pusta\n");
+
+return;
+
+}
+
+for(ptr=head;ptr!=NULL;ptr=ptr->next)
+
+  {
+
+  printf("\n%s \n", ptr->imie);
+
+  printf("%s \n", ptr->nazwisko);
+
+  printf("%d \n", ptr->rok);
+
+  }
+
+return;
+
+}
+
+
+void szukaj(struct osoba *head)
+
+{
+
+struct osoba *ptr;
+
+int rok;
+
+if(head==NULL)
+
+{
+
+printf("Lista jest pusta\n");
+
+return;
+
+}
+
+printf("Podaj rok");
+
+scanf("%d", &rok);
+
+getchar();
+
+for(ptr=head;ptr!=NULL;ptr=ptr->next)
+
+  {
+
+  if(rok==(ptr->rok))
+
+    {
+
+    printf("%s \n", ptr->imie);
+
+    printf("%s \n", ptr->nazwisko);
+
+    printf("%d \n", ptr->rok);
+
+    }
+
+  }
+
+return;
+
+}
+
+
+void usun_pierwszy(struct osoba **head)
+
+{
+
+struct osoba *temp;
+
+if(*head=NULL)
+
+{
+
+printf("Lista by³a pusta\n");
+
+return;
+
+}
+
+temp=*head;
+
+*head=(*head)->next;
+
+free(temp);
+
+temp=NULL;
+
+return;
+
+}
+
+
+void usun_ostatni(struct osoba **head)
+
+{
+
+struct osoba *ptr;
+
+if(*head==NULL)
+
+{
+
+printf("Lista by³a pusta\n");
+
+return;
+
+}
+
+if((*head)->next==NULL)
+
+{
+
+free(*head);
+
+*head=NULL;
+
+return;
+
+}
+
+for(ptr=*head;(ptr->next)->next!=NULL;ptr=ptr->next)
+
+{
+
+}
+
+free(ptr->next);
+
+ptr->next=NULL;
+
+return;
+
+}
+
+
+void usun(struct osoba *head)
+
+{
+
+struct osoba *ptr;
+
+struct osoba *temp;
+
+for(ptr=head;ptr!=NULL;ptr=temp->next)
+
+  {
+
+  temp=ptr;
+
+  free(ptr);
+
+  ptr=NULL;
+
+  }
+
+return;
+
+}
+
+
+main()
+
+{
+
+int polecenie;
+
+struct osoba *head=NULL;
+
+menu:
+
+printf("\n1)Dodaj element na pocz¹tku\n2)Sprawdz czyj to rok\n3)Wyswietl listê\n4)Usun pierwszy element\n5)Usun liste\n6)Zakoncz\n7)Dodaj element na koncu\n8)Usun ostatni element\n\n");
+
+scanf("%d", &polecenie);
+
+getchar();
+
+switch(polecenie)
+
+{
+
+  case 1:
+
+    {
+
+    dodaj_pierwszy(&head);
+
+    break;
+
+    }
+
+  case 2:
+
+    {
+
+    szukaj(head);
+
+    break;
+
+    }
+
+  case 3:
+
+    {
+
+    wypisz(head);
+
+    break;
+
+    }
+
+  case 4:
+
+    {
+
+    usun_pierwszy(&head);
+
+    break;
+
+    }
+
+  case 5:
+
+    {
+
+    usun(head);
+
+    head=NULL;
+
+    break;
+
+    }
+
+  case 6:
+
+    {
+
+    usun(head);
+
+    return 0;
+
+    }
+
+   case 7:
+
+   {
+
+   dodaj_koniec(&head);
+
+   break;
+
+   }
+
+   case 8:
+
+   {
+
+   usun_ostatni(&head);
+
+   break;
+
+   }
+
+}
+
+goto menu;
+
+}
