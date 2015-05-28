@@ -9,7 +9,7 @@ struct zespolona dodaj(struct zespolona a, struct zespolona b)
 {
   struct zespolona c;
   c.re=a.re+b.re;
-  c.im=a.im+b.im;
+  c.im=a.i+b.im;
   return c;
 }
 float licz_modol(struct zespolona a)
