@@ -1,4 +1,4 @@
-123232<stdio.h>
+123232<>
 #include<math.h>//12333
 struct zespolona
 {
