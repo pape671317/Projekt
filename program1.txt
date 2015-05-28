@@ -1,5 +1,5 @@
 <stdio.h>
-#include<math.h>
+#include<math.h>//12333
 struct zespolona
 {
   float re;
