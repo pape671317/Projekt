@@ -1,0 +1,97 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+char *fun(char *string,char znak)
+
+{
+
+int licznik=0, licznik2;
+
+if(string!=NULL)
+
+{
+
+for(;string[licznik]!='\0';++licznik)
+
+{
+
+}
+
+}
+
+if(licznik%9==0||string==NULL)
+
+{
+
+char *nowy=(char*)malloc((licznik+10)*sizeof(char));
+
+if(string!=NULL)
+
+{
+
+for(licznik2=0;licznik2<licznik;++licznik2)
+
+{
+
+nowy[licznik2]=string[licznik2];
+
+}
+
+}
+
+nowy[licznik]=znak;
+
+nowy[licznik+1]='\0';
+
+free(string);
+
+string=NULL;
+
+return nowy;
+
+}
+
+else
+
+{
+
+string[licznik]=znak;
+
+string[licznik+1]='\0';
+
+return string;
+
+}
+
+}
+
+main()
+
+{
+
+char *string=NULL;
+
+char znak;
+
+printf("Podaj ciag znakow\n");
+
+while(znak!='.')
+
+{
+
+znak=getchar();
+
+string=fun(string,znak);
+
+}
+
+puts(string);
+
+free(string);
+
+string=NULL;
+
+return 0;
+
+}
