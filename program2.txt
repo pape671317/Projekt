@@ -1,0 +1,192 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+#define ROZMIAR 20
+
+struct osoba{
+
+char imie[ROZMIAR];
+
+char nazwisko[ROZMIAR];
+
+long int telefon;
+
+};
+
+int dodaj(struct osoba **tab1,int *dl)
+
+{
+
+int licznik=0;
+
+struct osoba *tab2=(struct osoba*)malloc((*dl+1)*sizeof(struct osoba));
+
+if(tab2==NULL)
+
+{
+
+return 0;
+
+}
+
+for(;licznik<*dl;++licznik)
+
+{
+
+tab2[licznik]=(*tab1)[licznik];
+
+}
+
+*dl=*dl+1;
+
+printf("Podaj imiê\n");
+
+fgets((tab2+licznik)->imie,ROZMIAR,stdin);
+
+printf("Podaj nazwisko\n");
+
+fgets((tab2+licznik)->nazwisko,ROZMIAR,stdin);
+
+printf("Podaj telefon\n");
+
+scanf("%ld", &((tab2+licznik)->telefon));
+
+free(*tab1);
+
+*tab1=tab2;
+
+tab2=NULL;
+
+return 1;
+
+}
+
+
+int szukaj(struct osoba **ptab,int dl, long nr)
+
+{
+
+int licznik=0;
+
+for(;licznik<dl;licznik++)
+
+{
+
+printf("%ld\n",(*ptab+licznik)->telefon);
+
+if(nr==((*ptab+licznik)->telefon))
+
+return licznik;
+
+}
+
+return -1;
+
+}
+
+
+void wyswietl(struct osoba *elem)
+
+{
+
+fputs(elem->imie,stdout);
+
+fputs(elem->nazwisko,stdout);
+
+printf("%ld\n", elem->telefon);
+
+}
+
+
+main()
+
+{
+
+struct osoba *baza=NULL, *elem;
+
+int dl=0, flaga, ind,ind2, polecenie;
+
+long nr;
+
+menu:
+
+printf("1) dodaj element\n2)Sprawdz czyj to numer\n3)Wyswietl kontakt\n4)Zakoncz\n");
+
+scanf("%d", &polecenie);
+
+ fflush(stdin);
+
+switch(polecenie)
+
+{
+
+case 1:
+
+{
+
+flaga=dodaj(&baza, &dl);
+
+if(flaga==0)
+
+printf("Brak pamiêci\n");
+
+}
+
+break;
+
+case 2:
+
+{
+
+printf("Podaj nr telefonu, który chcesz sprawdzic\n");
+
+scanf("%ld", &nr);
+
+ind=szukaj(&baza, dl, nr);
+
+if(ind==-1)
+
+printf("Brak podanego numeru");
+
+else
+
+printf("Jest to osoba o indeksie %d\n", ind);
+
+break;
+
+}
+
+case 3:
+
+{
+
+printf("Podaj indeks kontaktu, ktory chcesz wyswietlic\n");
+
+scanf("%d", &ind2);
+
+elem=baza+ind2;
+
+wyswietl(elem);
+
+break;
+
+}
+
+case 4:
+
+{
+
+free(baza);
+
+baza=NULL;
+
+return 0;
+
+}
+
+}
+
+goto menu;
+
+}
