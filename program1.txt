@@ -19,7 +19,7 @@ struct zespolona licz_sprz(struct zespolona a)
 {
 wejsxie
 }
-void wypisz_zesp(struct zespolona z) {
+void wypis_zesp(struct zespolona z) {
 printf("%.2f %+.2fi \n", z.re, z.im);
 }
 main()
