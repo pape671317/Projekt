@@ -1,0 +1,202 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+struct wezel{
+
+int liczba;
+
+struct wezel *lewy;
+
+struct wezel *prawy;
+
+struct wezel *gora;
+
+};
+
+
+struct wezel *utworz(int liczba3)
+
+{
+
+struct wezel *korzen=(struct wezel*)malloc(sizeof(struct wezel));
+
+korzen->liczba=liczba3;
+
+korzen->gora=NULL;
+
+korzen->prawy=NULL;
+
+korzen->lewy=NULL;
+
+return korzen;
+
+}
+
+
+void dodaj(struct wezel *korzen,int liczba2)
+
+{
+
+int licznik;
+
+struct wezel *nowy=(struct wezel*)malloc(sizeof(struct wezel));
+
+struct wezel *ptr=korzen;
+
+nowy->liczba=liczba2;
+
+nowy->prawy=NULL;
+
+nowy->lewy=NULL;
+
+for(;;)
+
+{
+
+if(liczba2>=(ptr->liczba))
+
+{
+
+if(ptr->prawy!=NULL)
+
+ptr=ptr->prawy;
+
+else
+
+{
+
+ptr->prawy=nowy;
+
+nowy->gora=ptr;
+
+return;
+
+}
+
+}
+
+else if(liczba2<(ptr->liczba))
+
+{
+
+if(ptr->lewy!=NULL)
+
+ptr=ptr->lewy;
+
+else
+
+{
+
+ptr->lewy=nowy;
+
+nowy->gora=ptr;
+
+return;
+
+}
+
+}
+
+}
+
+}
+
+void inorder(struct wezel *korzen)
+
+{
+
+if(korzen!=NULL)
+
+{
+
+inorder(korzen->lewy);
+
+printf("%d  ",korzen->liczba);
+
+inorder(korzen->prawy);
+
+}
+
+}
+
+
+void preorder(struct wezel *korzen)
+
+{
+
+if(korzen!=NULL)
+
+{
+
+printf("%d  ",korzen->liczba);
+
+preorder(korzen->lewy);
+
+preorder(korzen->prawy);
+
+}
+
+}
+
+
+void postorder(struct wezel *korzen)
+
+{
+
+if(korzen!=NULL)
+
+{
+
+postorder(korzen->lewy);
+
+postorder(korzen->prawy);
+
+printf("%d  ",korzen->liczba);
+
+}
+
+}
+
+
+main()
+
+{
+
+struct wezel *korzen;
+
+int liczba,licznik, ilosc, liczba2;
+
+printf("Ile liczb?\n");
+
+scanf("%d",&ilosc);
+
+printf("Podaj liczbê\n");
+
+scanf("%d",&liczba);
+
+korzen=utworz(liczba);
+
+for(licznik=0;licznik<(ilosc-1);++licznik)
+
+{
+
+printf("Podaj liczbe\n");
+
+scanf("%d",&liczba2);
+
+dodaj(korzen,liczba2);
+
+}
+
+inorder(korzen);
+
+putchar('\n');
+
+preorder(korzen);
+
+putchar('\n');
+
+postorder(korzen);
+
+}
