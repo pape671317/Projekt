@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <math.h>
+
+int ilerozw(float a, float b, float c, float *rozw1, float *rozw2)
+{
+float delta, pdelta;
+delta=b*b-4*a*c;
+pdelta=sqrt(delta);
+if(delta>0)
+  {
+  *rozw1=(-b-pdelta)/(2*a);
+  *rozw2=(-b+pdelta)/(2*a);
+  return 2;
+  }
+if(delta==0)
+  {
+  *rozw1=-b/(2*a);
+  return 1;
+  }
+else
+  {
+  return 0;
+  }
+}
+
+int main()
+{
+float a,b,c,rozw1,rozw2;
+int rozw;
+printf("Podaj parametr a\n");
+scanf("%f", &a);
+printf("Podaj parametr b\n");
+scanf("%f", &b);
+printf("Podaj parametr c\n");
+scanf("%f", &c);
+rozw=ilerozw(a,b,c,&rozw1,&rozw2);
+if(rozw==2)
+  {
+  printf("Równanie ma dwa rozwi¹zania: %f i %f\n",rozw1, rozw2);
+  }
+if(rozw==1)
+  {
+  printf("Równanie ma jedno rozwi¹zanie: %f\n",rozw1);
+  }
+else
+  {
+  printf("Równanie nie ma rozwi¹zania\n");
+  }
+}
