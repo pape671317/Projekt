@@ -5,8 +5,7 @@ struct zespolona
   float re;
   float im;
 };
-struct zespolona dodaj(struct zespolona a, struct zespolona b)
-{
+struct zespolona dodaj(kygky
   c.im=a.im+b.im;
   return c;
 }
