@@ -27,7 +27,7 @@ struct zespolona licz_sprz(struct zespolona a)
 }
 void wypisz_zesp(struct zespolona z) {
 printf("%.2f %+.2f \n", z.re, z.im);
-}
+
 main()
 {
   struct zespolona a={2,5};
